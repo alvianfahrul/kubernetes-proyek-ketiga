@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: my-rabbitmq
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2023-10-26T11:43:09Z"
+  labels:
+    app.kubernetes.io/instance: my-rabbitmq
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: rabbitmq
+    app.kubernetes.io/version: 3.12.7
+    helm.sh/chart: rabbitmq-12.3.0
+  name: my-rabbitmq
+  namespace: default
+  resourceVersion: "1096"
+  uid: db5618a6-7ac7-43c9-87e9-2de6a7b1850b
+spec:
+  clusterIP: 10.107.106.60
+  clusterIPs:
+  - 10.107.106.60
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: amqp
+    port: 5672
+    protocol: TCP
+    targetPort: amqp
+  - name: epmd
+    port: 4369
+    protocol: TCP
+    targetPort: epmd
+  - name: dist
+    port: 25672
+    protocol: TCP
+    targetPort: dist
+  - name: http-stats
+    port: 15672
+    protocol: TCP
+    targetPort: stats
+  selector:
+    app.kubernetes.io/instance: my-rabbitmq
+    app.kubernetes.io/name: rabbitmq
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

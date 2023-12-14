@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service-deployment
+  labels:
+    app: ecommerce
+    tier: order
+spec:
+  selector:
+    matchLabels:
+      tier: order
+  template:
+    metadata:
+      labels:
+        app: ecommerce
+        tier: order
+    spec:
+      containers:
+      - name: order-service-container
+        image: ghcr.io/alvianfahrul/order-service:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 3000

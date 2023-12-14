@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-service-deployment
+  labels:
+    app: ecommerce
+    tier: shipping
+spec:
+  selector:
+    matchLabels:
+      tier: shipping
+  template:
+    metadata:
+      labels:
+        app: ecommerce
+        tier: shipping
+    spec:
+      containers:
+      - name: shipping-service-container
+        image: ghcr.io/alvianfahrul/shipping-service:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 3001
